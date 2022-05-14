@@ -1,19 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<meta name="viewport" content="width=device-width, initiale-scale=1.0">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+		<!--Feuilles de styles -->
+		<link rel="stylesheet" href="{{asset('/assets/css/bootstrap.min.css') }}">{% block stylesheets %}{% endblock %} <link
+		rel="stylesheet" href="{{asset('/assets/css/styles.css') }}">
+
+		<!--Fichiers scripts JS-->
+		<script src="{{ asset('/assets/js/bootstrap.bundle.js') }}"></script>
+		{% block javascripts %}{% endblock %}
+		<script src="{{ asset('/assets/js/scripts.js') }}"></script>
+
+	</head>
+	<body>
+		<nav
+			class="navbar navbar-dark bg-dark"><!-- Navbar content -->
+		</nav>
+
+		<nav
+			class="navbar navbar-dark bg-primary"><!-- Navbar content -->
+		</nav>
+
+		<nav
+			class="navbar navbar-light" style="background-color: #e3f2fd;"><!-- Navbar content -->
+		</nav>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Mon Blog</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Dropdown
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item" href="#">Action</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Another action</a>
+								</li>
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+						</li>
+						{% if app.user %}
+							<li class="nav-item">
+								<a class="nav-link" href="#">Mon compte</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_logout')}}">Me deconnecter</a>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_register')}}">M'inscrire</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_login')}}">Me connecter</a>
+							</li>
+						{% endif %}
+					</ul>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0"></div>
+				</div>
+			</nav>
+			{% block body %}{% endblock %}
+		</body>
+	</body>
+</html></body></html>
